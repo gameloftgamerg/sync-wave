@@ -1,0 +1,4 @@
+requests
+google-api-python-client==1.7.2
+google-auth-oauthlib==0.4.1
+git+https://github.com/ytdl-org/youtube-dl
