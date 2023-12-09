@@ -3,6 +3,7 @@ import requests
 import os
 
 import yt_dlp
+import youtube_dl as yt_dlp
 
 import google_auth_oauthlib.flow
 import googleapiclient.discovery
@@ -11,8 +12,6 @@ import googleapiclient.errors
 
 def get_access_token():
 
-    CLIENT_ID = "Client_ID" # Provided by spotify
-    CLIENT_SECRET = "Client_Secrets" # Also provided by spotify. Not meant to be shared in source code.
     # URLS
     AUTH_URL = 'https://accounts.spotify.com/authorize'
     TOKEN_URL = 'https://accounts.spotify.com/api/token'
@@ -27,6 +26,7 @@ def get_access_token():
         'scope': 'playlist-modify-private',
     })
     print(auth_code.url)
+    print(f"Click the link and follow through:", auth_code.url, sep='\n')
     code = input("Enter the redirected url: ")
     code = code[code.find('=')+1:]
     
@@ -44,8 +44,6 @@ def get_access_token():
 
     # convert the response to JSON
     access_token_response_data = access_token_request.json()
-
-    print(access_token_response_data)
 
     # save the access token
     access_token = access_token_response_data['access_token']
@@ -152,10 +150,10 @@ def get_youtube_client():
     # Disable OAuthlib's HTTPS verification when running locally.
     # *DO NOT* leave this option enabled in production.
     os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
+    # os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
     api_service_name = "youtube"
     api_version = "v3"
-    client_secrets_file = "client_secrets.json" # Path to your yt client_secrets js object. not meant to be revealed.
 
     # Get credentials and create an API client
     flow = google_auth_oauthlib.flow.InstalledAppFlow.from_client_secrets_file(client_secrets_file, scopes)
