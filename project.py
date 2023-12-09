@@ -2,7 +2,6 @@ import json
 import requests
 import os
 
-import yt_dlp
 import youtube_dl as yt_dlp
 
 import google_auth_oauthlib.flow
@@ -12,6 +11,8 @@ import googleapiclient.errors
 
 def get_access_token():
 
+    CLIENT_ID = "ca4be83d92324632bfed6c87a057864d" # Provided by spotify
+    CLIENT_SECRET = "a5ca84951f5a4cf4932b4ff84c290f56" # Also provided by spotify. Not meant to be shared in source code.
     # URLS
     AUTH_URL = 'https://accounts.spotify.com/authorize'
     TOKEN_URL = 'https://accounts.spotify.com/api/token'
@@ -25,7 +26,6 @@ def get_access_token():
         'redirect_uri': 'http://localhost:8888/callback',
         'scope': 'playlist-modify-private',
     })
-    print(auth_code.url)
     print(f"Click the link and follow through:", auth_code.url, sep='\n')
     code = input("Enter the redirected url: ")
     code = code[code.find('=')+1:]
@@ -56,8 +56,6 @@ token = get_access_token()
 
 def main():
     youtube_client = get_youtube_client()
-    print(user_id)
-    print(token)
     sp_playlist_id = create_playlist(user_id, token)
     playlists = get_playlists(youtube_client)
 
@@ -120,7 +118,6 @@ def create_playlist(user_id, token):
         }
     )
     response_json = response.json()
-    print(response_json)
     return response_json["id"]
 
 
@@ -149,11 +146,11 @@ def get_youtube_client():
 
     # Disable OAuthlib's HTTPS verification when running locally.
     # *DO NOT* leave this option enabled in production.
-    os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
     # os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
     api_service_name = "youtube"
     api_version = "v3"
+    client_secrets_file = "/Users/dhanushm/Documents/python_projects/yt2spotify/client_secrets.json" # Path to your yt client_secrets js object. not meant to be revealed.
 
     # Get credentials and create an API client
     flow = google_auth_oauthlib.flow.InstalledAppFlow.from_client_secrets_file(client_secrets_file, scopes)
@@ -204,8 +201,6 @@ def get_artist_and_track_from_video(video_id):
         title = video['title']
     except ValueError:
         title = None
-
-
 
     return title
 
