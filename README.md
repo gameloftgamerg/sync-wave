@@ -1,5 +1,5 @@
 # SyncWave: YTMusic to Spotify
-! [screenshot of the gui app] (assets/frame0/app.jpg)
+![screenshot of the gui app](assets/frame0/app.jpg)
 #### Video Demo: 
 ##### CLI APP: https://youtu.be/nVkyocuU2e8
 ##### GUI APP: https://youtu.be/_aOAsLIk6TM
