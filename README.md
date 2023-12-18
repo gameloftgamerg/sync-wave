@@ -1,5 +1,7 @@
 # SyncWave: YTMusic to Spotify
-#### Video Demo: https://youtu.be/nVkyocuU2e8
+#### Video Demo: 
+##### CLI APP: https://youtu.be/nVkyocuU2e8
+##### GUI APP: https://youtu.be/_aOAsLIk6TM
 #### Description: 
 # YouTube to Spotify Playlist Converter
 
