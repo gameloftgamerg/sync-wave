@@ -20,6 +20,7 @@ Before you run the script, you'll need to set up a few things:
    export YOUR_APP_CLIENT_SECRET='YOUR_SPOTIFY_CLIENT_SECRET'
    export SPOTIFY_REDIRECT_URI='http://localhost:8888/callback'
    export YT_CLIENT_SECRETS='location of your YT_CLIENT_SECRETS file'
+   export ASSETS_LOCATION='location of your ASSETS folder'
    ```
 
 4. **Dependencies:** Install the required Python packages using `pip`:
@@ -32,8 +33,13 @@ Before you run the script, you'll need to set up a few things:
 
 1. Run the script using Python 3:
 
+   for CLI app:
    ```
    python project.py
+   ```
+   for GUI app:
+   ```
+   python final_project.py
    ```
 
 2. You will be prompted to enter your YouTube playlist URL. Provide the URL of the YouTube playlist you want to convert.
@@ -46,4 +52,4 @@ Before you run the script, you'll need to set up a few things:
 - Ensure your YouTube videos have accurate titles to improve the matching accuracy with Spotify tracks.
 - Be mindful of the rate limits of the YouTube Data API and Spotify API to avoid getting blocked.
 
-TODO: Add GUI
+TODO: Make it a web app
